@@ -1,6 +1,10 @@
 package com.C2KProyect.Api_Rest_C2K.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "branch")
@@ -19,6 +23,15 @@ public class Branch {
     private String schedule;
     @Column(name = "status")
     private String status;
+
+    //Foreign key
+    /*@OneToMany(mappedBy = "branch")
+    @JsonManagedReference
+    private List<Assessor> assessors;
+
+    @OneToMany(mappedBy = "branch")
+    @JsonManagedReference
+    private List<Rental> rentals;*/
 
     public Branch() {
     }
