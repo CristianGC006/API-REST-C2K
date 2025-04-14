@@ -1,6 +1,9 @@
 package com.C2KProyect.Api_Rest_C2K.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "vehicle")
@@ -21,6 +24,27 @@ public class Vehicle {
     private Integer year;
     @Column(name = "type")
     private String type;
+
+    //Foreign key
+    @OneToMany(mappedBy = "vehicle")
+    //@JsonBackReference
+    private List<Rental>rentals;
+
+    @ManyToOne
+    @JoinColumn(name="id_user", referencedColumnName = "id_user")
+    private Customer customers;
+
+    @ManyToOne
+    @JoinColumn(name="id_branch", referencedColumnName = "id_branch")
+    private Branch branches;
+
+    @OneToMany(mappedBy = "vehicle")
+    //@JsonBackReference
+    private List<Inspection>inspections;
+
+
+
+
 
     public Vehicle() {
     }

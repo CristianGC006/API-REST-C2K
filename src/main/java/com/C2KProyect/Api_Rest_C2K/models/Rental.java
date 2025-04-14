@@ -2,6 +2,8 @@ package com.C2KProyect.Api_Rest_C2K.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "rental")
 public class Rental {
@@ -15,6 +17,33 @@ public class Rental {
     private String description;
     @Column(name = "price")
     private Double price;
+
+    //Foreign key
+    @ManyToOne
+    @JoinColumn(name = "id_vehicle", referencedColumnName = "vehicle_id")
+    private Vehicle vehicle;
+
+    @ManyToOne
+    @JoinColumn(name = "id_user", referencedColumnName = "id_user")
+    private Customer customer;
+
+    @ManyToOne
+    @JoinColumn(name = "id_user", referencedColumnName = "id_user", insertable = false, updatable = false)
+    private Assessor assessor;
+
+    @OneToMany(mappedBy = "rental")
+    //@JsonBackReference
+    private List<Inspection> inspections;
+
+    @ManyToOne
+    @JoinColumn(name = "id_branch", referencedColumnName = "id_branch")
+    private Branch branch;
+
+    @OneToOne(mappedBy = "rental")
+    private Payment payment;
+
+
+
 
     public Rental() {
     }

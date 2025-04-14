@@ -1,12 +1,14 @@
 package com.C2KProyect.Api_Rest_C2K.models;
 
 import com.C2KProyect.Api_Rest_C2K.helpers.enums.UserEnum;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jdk.jfr.Enabled;
 
 import java.security.PrivateKey;
 
-@Enabled
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "user")
 public class User {
     @Id
@@ -14,11 +16,16 @@ public class User {
     @Column(name = "id_user")
     private Integer idUser;
     @Column(name="email")
-    private String email;
+    protected String email;
     @Column(name="password")
-    private String password;
+    protected String password;
     @Column(name="user_type")
     private UserEnum userType;
+    @Column(name = "phone")
+    protected String phone;
+    @Column(name = "address")
+    private String address;
+
 
     public User() {
     }
