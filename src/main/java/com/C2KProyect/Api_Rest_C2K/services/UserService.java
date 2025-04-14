@@ -55,6 +55,7 @@ public class UserService {
         try {
           Optional<User>userSearched=this.repository.findById(id);
           if (userSearched.isPresent()){
+              userSearched.get().setName(userData.getName());
               userSearched.get().setEmail(userData.getEmail());
               userSearched.get().setPassword(userData.getPassword());
               userSearched.get().setPhone(userData.getPhone());
