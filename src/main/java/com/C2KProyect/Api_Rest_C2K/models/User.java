@@ -30,11 +30,13 @@ public class User {
     public User() {
     }
 
-    public User(Integer idUser, String email, String password, UserEnum userType) {
+    public User(Integer idUser, String email, String password, UserEnum userType, String phone, String address) {
         this.idUser = idUser;
         this.email = email;
         this.password = password;
         this.userType = userType;
+        this.phone = phone;
+        this.address = address;
     }
 
     public Integer getIdUser() {
@@ -67,5 +69,21 @@ public class User {
 
     public void setUserType(UserEnum userType) {
         this.userType = userType;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
