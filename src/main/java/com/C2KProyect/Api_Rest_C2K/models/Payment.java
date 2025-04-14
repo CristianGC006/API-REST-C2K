@@ -16,6 +16,11 @@ public class Payment {
     @Column(name = "amount")
     private Double amount;
 
+    //Foreign key
+    @OneToOne
+    @JoinColumn(name = "id_rental", referencedColumnName = "id_rental")
+    private Rental rental;
+
     public Payment() {
     }
     public Payment(Integer idPayment, PaymentEnum paymentMethod, Double amount) {

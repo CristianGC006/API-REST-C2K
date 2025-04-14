@@ -25,13 +25,13 @@ public class Branch {
     private String status;
 
     //Foreign key
-    /*@OneToMany(mappedBy = "branch")
-    @JsonManagedReference
+    @OneToMany(mappedBy = "branch")
+   // @JsonManagedReference
     private List<Assessor> assessors;
 
     @OneToMany(mappedBy = "branch")
-    @JsonManagedReference
-    private List<Rental> rentals;*/
+    //@JsonManagedReference
+    private List<Rental> rentals;
 
     public Branch() {
     }
