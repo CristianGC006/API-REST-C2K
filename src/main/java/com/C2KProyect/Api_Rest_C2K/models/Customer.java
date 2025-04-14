@@ -19,7 +19,7 @@ public class Customer extends User{
     //@JsonBackReference
     private List<Rental>rentals;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customers")
     //@JsonBackReference
     private List<Vehicle>vehicles;
 

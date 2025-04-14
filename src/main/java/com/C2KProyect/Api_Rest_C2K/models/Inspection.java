@@ -10,7 +10,7 @@ public class Inspection {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_inspection")
-    private Integer inspectionId;
+    private Integer id;
     @Column(name = "type")
     private InspectionEnum type;
     //Aca va la foto
@@ -34,18 +34,20 @@ public class Inspection {
     }
 
 
-
-    public Inspection(Integer inspectionId, Integer rentalId, InspectionEnum type) {
-        this.inspectionId = inspectionId;
+    public Inspection(Integer id, InspectionEnum type, Branch branch, Rental rental, Vehicle vehicle) {
+        this.id = id;
         this.type = type;
+        this.branch = branch;
+        this.rental = rental;
+        this.vehicle = vehicle;
     }
 
-    public Integer getInspectionId() {
-        return inspectionId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setInspectionId(Integer inspectionId) {
-        this.inspectionId = inspectionId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public InspectionEnum getType() {

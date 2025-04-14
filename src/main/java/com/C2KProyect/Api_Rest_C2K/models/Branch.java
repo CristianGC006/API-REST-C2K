@@ -30,6 +30,10 @@ public class Branch {
     private List<Assessor> assessors;
 
     @OneToMany(mappedBy = "branch")
+    //@JsonBackReference
+    private List<Inspection>inspections;
+
+    @OneToMany(mappedBy = "branch")
     //@JsonManagedReference
     private List<Rental> rentals;
 
