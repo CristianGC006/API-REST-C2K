@@ -51,6 +51,35 @@ public class AssessorService {
         }
     }
 
+    //Update by Id -->
+    public Assessor updateAssessor(Integer id, Assessor assessorData) throws Exception {
+        try {
+            Optional<Assessor> assessorSearched = this.repository.findById(id);
+            if (assessorSearched.isPresent()) {
+                Assessor existingAssessor = assessorSearched.get();
+
+                // Actualizar campos heredados de User
+                existingAssessor.setName(assessorData.getName());
+                existingAssessor.setEmail(assessorData.getEmail());
+                existingAssessor.setPassword(assessorData.getPassword());
+                existingAssessor.setUserType(assessorData.getUserType());
+                existingAssessor.setPhone(assessorData.getPhone());
+                existingAssessor.setAddress(assessorData.getAddress());
+
+                // Actualizar campos específicos de Assessor
+                existingAssessor.setBranch(assessorData.getBranch());
+                existingAssessor.setRentals(assessorData.getRentals());
+
+                // Guardar cambios
+                return this.repository.save(existingAssessor);
+            } else {
+                throw new Exception("El asesor no se encuentra en la base de datos");
+            }
+        } catch (Exception error) {
+            throw new Exception(error.getMessage());
+        }
+    }
+
     //Delete by Id -->
     public boolean deleteAssessor(Integer id)throws Exception{
         try {

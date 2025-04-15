@@ -19,6 +19,24 @@ public class Assessor extends User {
         this.rentals = rentals;
     }
 
+
+
+    public Branch getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branch branch) {
+        this.branch = branch;
+    }
+
+    public List<Rental> getRentals() {
+        return rentals;
+    }
+
+    public void setRentals(List<Rental> rentals) {
+        this.rentals = rentals;
+    }
+
     //Foreign key
     @ManyToOne
     @JoinColumn(name = "id_branch", referencedColumnName = "id_branch")
