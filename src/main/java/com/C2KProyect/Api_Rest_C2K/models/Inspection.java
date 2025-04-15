@@ -28,6 +28,9 @@ public class Inspection {
     @JoinColumn(name = "id_vehicle", referencedColumnName = "vehicle_id")
     private Vehicle vehicle;
 
+    @ManyToOne
+    @JoinColumn(name="logistic_operator", referencedColumnName= "id_user")
+    private LogisticOperator logistic_operator;
 
 
     public Inspection() {
