@@ -60,4 +60,36 @@ public class Inspection {
     public void setType(InspectionEnum type) {
         this.type = type;
     }
+
+    public Branch getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branch branch) {
+        this.branch = branch;
+    }
+
+    public Rental getRental() {
+        return rental;
+    }
+
+    public void setRental(Rental rental) {
+        this.rental = rental;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
+    public LogisticOperator getLogistic_operator() {
+        return logistic_operator;
+    }
+
+    public void setLogistic_operator(LogisticOperator logistic_operator) {
+        this.logistic_operator = logistic_operator;
+    }
 }

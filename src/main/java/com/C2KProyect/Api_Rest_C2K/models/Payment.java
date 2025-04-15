@@ -28,6 +28,7 @@ public class Payment {
         this.paymentMethod = paymentMethod;
         this.amount = amount;
     }
+
     public Integer getIdPayment() {
         return idPayment;
     }
@@ -50,5 +51,13 @@ public class Payment {
 
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    public Rental getRental() {
+        return rental;
+    }
+
+    public void setRental(Rental rental) {
+        this.rental = rental;
     }
 }
