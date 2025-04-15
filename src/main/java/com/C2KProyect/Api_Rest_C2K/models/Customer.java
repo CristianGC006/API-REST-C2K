@@ -1,5 +1,6 @@
 package com.C2KProyect.Api_Rest_C2K.models;
 
+import com.C2KProyect.Api_Rest_C2K.helpers.enums.UserEnum;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -24,15 +25,17 @@ public class Customer extends User{
     private List<Vehicle>vehicles;
 
 
+
     public Customer() {
     }
 
-    public Customer(Integer idCustomer, String name, String phone, String address, Date recordDate) {
-
-        this.name = name;
+    public Customer(Integer idUser, String name, String email, String password, UserEnum userType, String phone, String address, String name1, Date recordDate, List<Rental> rentals, List<Vehicle> vehicles) {
+        super(idUser, name, email, password, userType, phone, address);
+        this.name = name1;
         this.recordDate = recordDate;
+        this.rentals = rentals;
+        this.vehicles = vehicles;
     }
-
 
     public String getName() {
         return name;

@@ -1,5 +1,6 @@
 package com.C2KProyect.Api_Rest_C2K.models;
 
+import com.C2KProyect.Api_Rest_C2K.helpers.enums.UserEnum;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GeneratedColumn;
 
@@ -25,11 +26,12 @@ public class LogisticOperator extends User {
 
     public LogisticOperator() {
     }
-    public LogisticOperator(Integer idLogisticOperator, String name, String certifications) {
 
+    public LogisticOperator(Integer idUser, String name, String email, String password, UserEnum userType, String phone, String address, String certifications, List<Inspection> inspections) {
+        super(idUser, name, email, password, userType, phone, address);
         this.certifications = certifications;
+        this.inspections = inspections;
     }
-
 
     public String getCertifications() {
         return certifications;

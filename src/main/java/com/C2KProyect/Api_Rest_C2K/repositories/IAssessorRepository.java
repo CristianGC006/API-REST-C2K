@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IAsessorRepository extends JpaRepository<Assessor, Integer> {
+public interface IAssessorRepository extends JpaRepository<Assessor, Integer> {
 }
