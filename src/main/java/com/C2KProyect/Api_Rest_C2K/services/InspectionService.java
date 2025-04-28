@@ -28,7 +28,7 @@ public class InspectionService {
 
     //Find all
 
-    public List<Inspection> findAll(Inspection inspectionData) throws Exception{
+    public List<Inspection> findAll() throws Exception{
         try{
             return this.repository.findAll();
         }
@@ -40,7 +40,7 @@ public class InspectionService {
     //Find by id
 
 
-    public Inspection FindAll(Integer id) throws Exception{
+    public Inspection findById(Integer id) throws Exception{
         try{
             Optional<Inspection> inspectionSearched=this.repository.findById(id);
             if (inspectionSearched.isPresent()){

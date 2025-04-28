@@ -60,11 +60,12 @@ public class LogisticOperatorServ {
     }
 
     //Delete by Id -->
-    public void deleteById(Integer id) throws Exception {
+    public boolean deleteById(Integer id) throws Exception {
         try {
             LogisticOperator logisticOperatorSearched = this.findByID(id);
             if (logisticOperatorSearched != null) {
                 this.repository.delete(logisticOperatorSearched);
+                return true;
             } else {
                 throw new Exception("El operador logístico no se encuentra en la base de datos");
             }
