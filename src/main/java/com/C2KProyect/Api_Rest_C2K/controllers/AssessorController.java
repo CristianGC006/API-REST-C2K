@@ -19,12 +19,12 @@ public class AssessorController {
     //--Crud--
 
     //Save-->
-    @PostMapping
-    public ResponseEntity<?> save(@RequestBody Assessor requestData){
-        try{
-            return ResponseEntity.status(HttpStatus.CREATED).body(this.assessorService.createAssessor(requestData));
-        }
-        catch (Exception error){
+    @PostMapping({"/{idUser}"})
+    public ResponseEntity<?> createAssessorFromUser(@PathVariable Integer idUser, @RequestBody Assessor requestData) {
+        try {
+            Assessor newAssessor = assessorService.createAssessorFromUser(idUser, requestData);
+            return ResponseEntity.status(HttpStatus.CREATED).body(newAssessor);
+        } catch (Exception error) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error.getMessage());
         }
     }
@@ -54,7 +54,7 @@ public class AssessorController {
     public ResponseEntity<?>update(@RequestBody Assessor requestData) {
         try {
             // Guardar el Assessor usando el servicio
-            Assessor savedAssessor = this.assessorService.createAssessor(requestData);
+            Assessor savedAssessor = this.assessorService.createAssessorFromUser(requestData.getIdUser(), requestData);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedAssessor);
         } catch (Exception error) {
             // Manejar errores y devolver una respuesta adecuada
