@@ -52,7 +52,6 @@ public class PaymentService {
         }
     }
     //Update by Id -->
-
     public Payment updateById(Integer id, Payment paymentData) throws Exception {
         try {
             Optional<Payment> paymentSearched = this.repository.findById(id);
