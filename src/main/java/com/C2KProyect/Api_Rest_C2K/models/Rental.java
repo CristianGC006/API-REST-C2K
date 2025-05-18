@@ -1,5 +1,6 @@
 package com.C2KProyect.Api_Rest_C2K.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -37,9 +38,11 @@ public class Rental {
 
     @ManyToOne
     @JoinColumn(name = "id_branch", referencedColumnName = "id_branch")
+    @JsonManagedReference(value = "branch")
     private Branch branch;
 
     @OneToOne(mappedBy = "rental")
+    @JsonManagedReference(value = "rental")
     private Payment payment;
 
 

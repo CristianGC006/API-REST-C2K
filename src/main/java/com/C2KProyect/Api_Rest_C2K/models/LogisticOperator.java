@@ -1,6 +1,7 @@
 package com.C2KProyect.Api_Rest_C2K.models;
 
 import com.C2KProyect.Api_Rest_C2K.helpers.enums.UserEnum;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GeneratedColumn;
 
@@ -17,7 +18,8 @@ public class LogisticOperator extends User {
 
     //Foreign key
     @OneToMany(mappedBy = "logistic_operator")
-    //@ManagerReference
+    @JsonManagedReference(value = "logistic_operator")
+
     private List<Inspection> inspections;
 
 

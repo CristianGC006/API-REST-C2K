@@ -1,6 +1,7 @@
 package com.C2KProyect.Api_Rest_C2K.models;
 
 import com.C2KProyect.Api_Rest_C2K.helpers.enums.UserEnum;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.apache.catalina.LifecycleState;
 
@@ -40,6 +41,7 @@ public class Assessor extends User {
     //Foreign key
     @ManyToOne
     @JoinColumn(name = "id_branch", referencedColumnName = "id_branch")
+    @JsonManagedReference(value = "branch")
     private Branch branch;
 
     @OneToMany(mappedBy = "assessor")

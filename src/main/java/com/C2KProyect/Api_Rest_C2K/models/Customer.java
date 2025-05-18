@@ -1,6 +1,7 @@
 package com.C2KProyect.Api_Rest_C2K.models;
 
 import com.C2KProyect.Api_Rest_C2K.helpers.enums.UserEnum;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -17,11 +18,11 @@ public class Customer extends User{
 
     //Foreign key
     @OneToMany(mappedBy = "customer")
-    //@JsonBackReference
+    @JsonBackReference(value = "customer")
     private List<Rental>rentals;
 
     @OneToMany(mappedBy = "customers")
-    //@JsonBackReference
+    @JsonBackReference(value = "customer")
     private List<Vehicle>vehicles;
 
 

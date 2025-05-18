@@ -27,19 +27,21 @@ public class Vehicle {
 
     //Foreign key
     @OneToMany(mappedBy = "vehicle")
-    //@JsonBackReference
+    @JsonBackReference(value = "vehicle")
     private List<Rental>rentals;
 
     @ManyToOne
     @JoinColumn(name="id_user", referencedColumnName = "id_user")
+    @JsonBackReference(value = "customer")
     private Customer customers;
 
     @ManyToOne
     @JoinColumn(name="id_branch", referencedColumnName = "id_branch")
+    @JsonBackReference(value = "branch")
     private Branch branches;
 
     @OneToMany(mappedBy = "vehicle")
-    //@JsonBackReference
+    @JsonBackReference(value = "vehicle")
     private List<Inspection>inspections;
 
 

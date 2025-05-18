@@ -26,15 +26,15 @@ public class Branch {
 
     //Foreign key
     @OneToMany(mappedBy = "branch")
-   // @JsonManagedReference
+   @JsonManagedReference(value = "branch")
     private List<Assessor> assessors;
 
     @OneToMany(mappedBy = "branch")
-    //@JsonBackReference
+    @JsonBackReference(value = "branch")
     private List<Inspection>inspections;
 
     @OneToMany(mappedBy = "branch")
-    //@JsonManagedReference
+    @JsonManagedReference(value = "branch")
     private List<Rental> rentals;
 
     public Branch() {

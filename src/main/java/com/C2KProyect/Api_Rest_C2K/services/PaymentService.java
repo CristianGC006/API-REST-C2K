@@ -2,6 +2,7 @@ package com.C2KProyect.Api_Rest_C2K.services;
 
 import com.C2KProyect.Api_Rest_C2K.models.LogisticOperator;
 import com.C2KProyect.Api_Rest_C2K.models.Payment;
+import com.C2KProyect.Api_Rest_C2K.models.Rental;
 import com.C2KProyect.Api_Rest_C2K.repositories.IPaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,13 +68,15 @@ public class PaymentService {
         }
     }
     //Delete by Id -->
-    public void deleteById(Integer id) throws Exception {
+    public boolean deleteById(Integer id) throws Exception {
+
         try {
             Optional<Payment> paymentSearched = this.repository.findById(id);
             if (paymentSearched.isPresent()) {
-                this.repository.delete(paymentSearched.get());
+                this.repository.deleteById(id);
+                return true;
             } else {
-                throw new Exception("El pago no se encuentra en la base de datos");
+                throw new Exception("El alquiler que quieres eliminar no se encuentra en la base de datos");
             }
         } catch (Exception error) {
             throw new Exception(error.getMessage());

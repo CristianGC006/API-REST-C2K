@@ -1,6 +1,7 @@
 package com.C2KProyect.Api_Rest_C2K.models;
 
 import com.C2KProyect.Api_Rest_C2K.helpers.enums.PaymentEnum;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -19,6 +20,7 @@ public class Payment {
     //Foreign key
     @OneToOne
     @JoinColumn(name = "id_rental", referencedColumnName = "id_rental")
+    @JsonBackReference(value = "rental")
     private Rental rental;
 
     public Payment() {
