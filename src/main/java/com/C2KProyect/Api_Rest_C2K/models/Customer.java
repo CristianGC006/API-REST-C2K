@@ -25,6 +25,11 @@ public class Customer extends User{
     @JsonBackReference(value = "customer")
     private List<Vehicle>vehicles;
 
+    @ManyToOne
+    @JoinColumn(name = "id_admin", referencedColumnName = "id_user")
+    @JsonBackReference(value = "admin-customer")
+    private Admin admin;
+
 
 
     public Customer() {

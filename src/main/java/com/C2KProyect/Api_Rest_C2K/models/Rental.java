@@ -45,6 +45,10 @@ public class Rental {
     @JsonManagedReference(value = "rental")
     private Payment payment;
 
+    @ManyToOne
+    @JoinColumn(name = "id_admin", referencedColumnName = "id_user")
+    @JsonManagedReference(value = "admin-rental")
+    private Admin admin;
 
 
 

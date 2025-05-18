@@ -48,5 +48,10 @@ public class Assessor extends User {
     //@JsonBackReference
     private List<Rental>rentals;
 
+    @ManyToOne
+    @JoinColumn(name = "id_admin", referencedColumnName = "id_user")
+    @JsonManagedReference(value = "admin-assessor")
+    private Admin admin;
+
 
 }

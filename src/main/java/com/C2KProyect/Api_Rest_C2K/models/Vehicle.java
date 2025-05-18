@@ -44,6 +44,11 @@ public class Vehicle {
     @JsonBackReference(value = "vehicle")
     private List<Inspection>inspections;
 
+    @ManyToOne
+    @JoinColumn(name = "id_admin", referencedColumnName = "id_user")
+    @JsonBackReference(value = "admin-vehicle")
+    private Admin admin;
+
 
 
 

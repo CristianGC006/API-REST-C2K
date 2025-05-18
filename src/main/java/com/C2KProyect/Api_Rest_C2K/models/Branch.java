@@ -37,6 +37,11 @@ public class Branch {
     @JsonManagedReference(value = "branch")
     private List<Rental> rentals;
 
+    @ManyToOne
+    @JoinColumn(name = "id_admin", referencedColumnName = "id_user")
+    @JsonBackReference(value = "admin-branch")
+    private Admin admin;
+
     public Branch() {
     }
 
