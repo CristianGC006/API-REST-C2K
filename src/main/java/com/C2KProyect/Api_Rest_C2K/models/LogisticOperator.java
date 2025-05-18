@@ -19,7 +19,6 @@ public class LogisticOperator extends User {
     //Foreign key
     @OneToMany(mappedBy = "logistic_operator")
     @JsonManagedReference(value = "logistic_operator")
-
     private List<Inspection> inspections;
 
 
@@ -29,10 +28,8 @@ public class LogisticOperator extends User {
     public LogisticOperator() {
     }
 
-    public LogisticOperator(Integer idUser, String name, String email, String password, UserEnum userType, String phone, String address, String certifications, List<Inspection> inspections) {
+    public LogisticOperator(Integer idUser, String name, String email, String password, UserEnum userType, String phone, String address) {
         super(idUser, name, email, password, userType, phone, address);
-        this.certifications = certifications;
-        this.inspections = inspections;
     }
 
     public String getCertifications() {
@@ -43,5 +40,11 @@ public class LogisticOperator extends User {
         this.certifications = certifications;
     }
 
+    public List<Inspection> getInspections() {
+        return inspections;
+    }
 
+    public void setInspections(List<Inspection> inspections) {
+        this.inspections = inspections;
+    }
 }

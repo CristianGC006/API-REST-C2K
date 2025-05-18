@@ -21,7 +21,6 @@ public class Assessor extends User {
     }
 
 
-
     public Branch getBranch() {
         return branch;
     }
@@ -36,6 +35,14 @@ public class Assessor extends User {
 
     public void setRentals(List<Rental> rentals) {
         this.rentals = rentals;
+    }
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
     }
 
     //Foreign key

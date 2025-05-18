@@ -1,6 +1,6 @@
 package com.C2KProyect.Api_Rest_C2K.services;
 
-import com.C2KProyect.Api_Rest_C2K.models.User;
+import com.C2KProyect.Api_Rest_C2K.models.*;
 import com.C2KProyect.Api_Rest_C2K.repositories.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,17 +13,93 @@ public class UserService {
     //Implements Repositories
     @Autowired
     IUserRepository repository;
+    @Autowired
+    AssessorService assessorService;
+    @Autowired
+    CustomerService customerService;
+    @Autowired
+    AdminService adminService;
+    @Autowired
+    LogisticOperatorServ logisticOperatorService;
 
 
     //--Methods--
 
     //Save-->
-    public User createUser(User userData)throws Exception{
-        try{
-            return this.repository.save(userData);
-        }
-        catch (Exception error){
-            throw new Exception(error.getMessage());
+    public User createUser(User userData) throws Exception {
+        try {
+            // Guardar el usuario base
+            User savedUser= this.repository.save(userData);
+
+            // Verificar el tipo de usuario y delegar la creación
+            switch (userData.getUserType()) {
+                case ADMIN:
+                    Admin admin = new Admin(
+                            null, // ID se generará automáticamente
+                            savedUser.getName(),
+                            savedUser.getEmail(),
+                            savedUser.getPassword(),
+                            savedUser.getUserType(),
+                            savedUser.getPhone(),
+                            savedUser.getAddress(),
+                            null, // Branches
+                            null, // Assessors
+                            null, // Rentals
+                            null  // Vehicles
+                    );
+                    adminService.createAdmin(admin);
+                    break;
+
+                case ASSESSOR:
+                    Assessor assessor = new Assessor(
+                            savedUser.getIdUser(),
+                            savedUser.getName(),
+                            savedUser.getEmail(),
+                            savedUser.getPassword(),
+                            savedUser.getUserType(),
+                            savedUser.getPhone(),
+                            savedUser.getAddress(),
+                            null, // Branch
+                            null  // Rentals
+                    );
+                    assessorService.createAssessor(assessor);
+                    break;
+
+                case CUSTOMER:
+                    Customer customer = new Customer(
+                            null,
+                            savedUser.getName(),
+                            savedUser.getEmail(),
+                            savedUser.getPassword(),
+                            savedUser.getUserType(),
+                            savedUser.getPhone(),
+                            savedUser.getAddress(),
+                            null, // Rentals
+                            null  // Vehicles
+                    );
+                    customerService.createCustomer(customer);
+                    break;
+
+                case LOGISTICOPERATOR:
+                    LogisticOperator logisticOperator = new LogisticOperator(
+                            null,
+                            savedUser.getName(),
+                            savedUser.getEmail(),
+                            savedUser.getPassword(),
+                            savedUser.getUserType(),
+                            savedUser.getPhone(),
+                            savedUser.getAddress()
+                    );
+                    logisticOperatorService.createLogisticOperator(logisticOperator);
+                    break;
+
+                default:
+                    throw new Exception("Tipo de usuario no soportado.");
+            }
+
+            return savedUser;
+        } catch (Exception error) {
+            throw new Exception("Error al crear el usuario: " + error.getMessage());
         }
     }
 

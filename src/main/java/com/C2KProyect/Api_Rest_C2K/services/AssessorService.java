@@ -1,10 +1,8 @@
 package com.C2KProyect.Api_Rest_C2K.services;
 
-import com.C2KProyect.Api_Rest_C2K.helpers.enums.UserEnum;
 import com.C2KProyect.Api_Rest_C2K.models.Assessor;
 import com.C2KProyect.Api_Rest_C2K.models.User;
 import com.C2KProyect.Api_Rest_C2K.repositories.IAssessorRepository;
-import com.C2KProyect.Api_Rest_C2K.repositories.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,44 +16,15 @@ public class AssessorService {
     //Implements Repositories
     @Autowired
     IAssessorRepository repository;
-    @Autowired
-    IUserRepository userRepository;
 
     //--Methods--
 
     //Save-->
-    public Assessor createAssessorFromUser(Integer idUser, Assessor assessorData) throws Exception {
+    public Assessor createAssessor(Assessor assessorData) throws Exception {
         try {
-            // Verificar si ya existe un asesor con el mismo idUser
-            Optional<Assessor> existingAssessor = repository.findById(idUser);
-            if (existingAssessor.isPresent()) {
-                throw new Exception("Ya existe un asesor asociado al ID de usuario proporcionado.");
-            }
-
-            Optional<User> userOptional = userRepository.findById(idUser);
-            if (userOptional.isPresent()) {
-                User user = userOptional.get();
-
-                // Crear un nuevo asesor usando los datos del usuario
-                Assessor assessor = new Assessor();
-                assessor.setName(user.getName());
-                assessor.setEmail(user.getEmail());
-                assessor.setPassword(user.getPassword());
-                assessor.setUserType(UserEnum.ASSESSOR); // Cambiar el tipo de usuario a ASSESSOR
-                assessor.setPhone(user.getPhone());
-                assessor.setAddress(user.getAddress());
-
-                // Agregar datos específicos del asesor
-                assessor.setBranch(assessorData.getBranch());
-                assessor.setRentals(assessorData.getRentals());
-
-                // Guardar el asesor en la base de datos
-                return repository.save(assessor);
-            } else {
-                throw new Exception("El usuario con el ID proporcionado no existe.");
-            }
-        } catch (Exception e) {
-            throw new Exception("Error al crear el asesor: " + e.getMessage());
+            return this.repository.save(assessorData);
+        } catch (Exception error) {
+            throw new Exception(error.getMessage());
         }
     }
 
@@ -84,29 +53,18 @@ public class AssessorService {
     }
 
     //Update by Id -->
-    public Assessor updateAssessor(Integer id, Assessor assessorData) throws Exception {
+    public Assessor updateById(Integer id, User assessorData)throws Exception{
         try {
-            Optional<Assessor> assessorSearched = this.repository.findById(id);
-            if (assessorSearched.isPresent()) {
-                Assessor existingAssessor = assessorSearched.get();
+            Optional<Assessor> assessorSearched =this.repository.findById(id);
+            if (assessorSearched.isPresent()){
+                assessorSearched.get().setName(assessorData.getName());
+                assessorSearched.get().setEmail(assessorData.getEmail());
+                assessorSearched.get().setPassword(assessorData.getPassword());
 
-                // Actualizar campos heredados de User
-                existingAssessor.setName(assessorData.getName());
-                existingAssessor.setEmail(assessorData.getEmail());
-                existingAssessor.setPassword(assessorData.getPassword());
-                existingAssessor.setUserType(assessorData.getUserType());
-                existingAssessor.setPhone(assessorData.getPhone());
-                existingAssessor.setAddress(assessorData.getAddress());
-
-                // Actualizar campos específicos de Assessor
-                existingAssessor.setBranch(assessorData.getBranch());
-                existingAssessor.setRentals(assessorData.getRentals());
-
-                // Guardar cambios
-                return this.repository.save(existingAssessor);
-            } else {
-                throw new Exception("El asesor no se encuentra en la base de datos");
+            }else{
+                throw new Exception("El usuario que quieres modificar no se encuentra en la base de datos");
             }
+            return this.repository.save(assessorSearched.get());
         } catch (Exception error) {
             throw new Exception(error.getMessage());
         }

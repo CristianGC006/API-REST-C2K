@@ -35,10 +35,8 @@ public class Customer extends User{
     public Customer() {
     }
 
-    public Customer(Integer idUser, String name, String email, String password, UserEnum userType, String phone, String address, String name1, Date recordDate, List<Rental> rentals, List<Vehicle> vehicles) {
+    public Customer(Integer idUser, String name, String email, String password, UserEnum userType, String phone, String address, List<Rental> rentals, List<Vehicle> vehicles) {
         super(idUser, name, email, password, userType, phone, address);
-        this.name = name1;
-        this.recordDate = recordDate;
         this.rentals = rentals;
         this.vehicles = vehicles;
     }
@@ -57,6 +55,30 @@ public class Customer extends User{
 
     public void setRecordDate(Date recordDate) {
         this.recordDate = recordDate;
+    }
+
+    public List<Rental> getRentals() {
+        return rentals;
+    }
+
+    public void setRentals(List<Rental> rentals) {
+        this.rentals = rentals;
+    }
+
+    public List<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public void setVehicles(List<Vehicle> vehicles) {
+        this.vehicles = vehicles;
+    }
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
     }
 }
 

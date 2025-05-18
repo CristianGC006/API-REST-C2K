@@ -14,9 +14,12 @@ import java.util.List;
 public class Admin extends User {
     public Admin() {
     }
-
-    public Admin(Integer idUser, String name, String email, String password, UserEnum userType, String phone, String address) {
+    public Admin(Integer idUser, String name, String email, String password, UserEnum userType, String phone, String address, List<Branch> branches, List<Assessor> assessors, List<Rental> rentals, List<Vehicle> vehicles) {
         super(idUser, name, email, password, userType, phone, address);
+        this.branches = branches;
+        this.assessors = assessors;
+        this.rentals = rentals;
+        this.vehicles = vehicles;
     }
 
     //Foreign key
@@ -70,5 +73,6 @@ public class Admin extends User {
     public void setVehicles(List<Vehicle> vehicles) {
         this.vehicles = vehicles;
     }
+
 
 }

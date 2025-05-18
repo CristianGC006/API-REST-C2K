@@ -1,5 +1,6 @@
 package com.C2KProyect.Api_Rest_C2K.controllers;
 
+import com.C2KProyect.Api_Rest_C2K.models.Admin;
 import com.C2KProyect.Api_Rest_C2K.models.Assessor;
 import com.C2KProyect.Api_Rest_C2K.models.User;
 import com.C2KProyect.Api_Rest_C2K.services.AssessorService;
@@ -16,60 +17,49 @@ public class AssessorController {
     @Autowired
     AssessorService assessorService;
 
-    //--Crud--
 
-    //Save-->
-    @PostMapping({"/{idUser}"})
-    public ResponseEntity<?> createAssessorFromUser(@PathVariable Integer idUser, @RequestBody Assessor requestData) {
+    @PostMapping
+    public ResponseEntity<?> createAssessor(@RequestBody Assessor requestData) {
         try {
-            Assessor newAssessor = assessorService.createAssessorFromUser(idUser, requestData);
-            return ResponseEntity.status(HttpStatus.CREATED).body(newAssessor);
+            return ResponseEntity.status(HttpStatus.CREATED).body(this.assessorService.createAssessor(requestData));
         } catch (Exception error) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error.getMessage());
         }
     }
 
-    //Find all -->
     @GetMapping
-    public ResponseEntity<?>findAll(){
-        try{
-            return ResponseEntity.status(HttpStatus.OK).body(this.assessorService.findAll());
-        }catch (Exception error){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error.getMessage());
-        }
-    }
-
-    //Find by id -->
-    @GetMapping("/{id}")
-    public ResponseEntity<?>findById(@PathVariable Integer id, @RequestBody Assessor requestData){
-        try{
-            return ResponseEntity.status(HttpStatus.OK).body(this.assessorService.findById(id));
-        }catch (Exception error){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error.getMessage());
-        }
-    }
-
-    //Update-->
-    @PutMapping("/{id}")
-    public ResponseEntity<?>update(@RequestBody Assessor requestData) {
+    public ResponseEntity<?> findAll() {
         try {
-            // Guardar el Assessor usando el servicio
-            Assessor savedAssessor = this.assessorService.createAssessorFromUser(requestData.getIdUser(), requestData);
-            return ResponseEntity.status(HttpStatus.CREATED).body(savedAssessor);
+            return ResponseEntity.status(HttpStatus.OK).body(this.assessorService.findAll());
         } catch (Exception error) {
-            // Manejar errores y devolver una respuesta adecuada
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error.getMessage());
-        }
-    }
-    //Delete-->
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?>delete(@PathVariable Integer id){
-        try{
-            return ResponseEntity.status(HttpStatus.OK).body(this.assessorService.deleteAssessor(id));
-        }
-        catch (Exception error){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error.getMessage());
         }
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findById(@PathVariable Integer id) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(this.assessorService.findById(id));
+        } catch (Exception error) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error.getMessage());
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody Assessor requestData) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(this.assessorService.updateById(id, requestData));
+        } catch (Exception error) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Integer id) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(this.assessorService.deleteAssessor(id));
+        } catch (Exception error) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error.getMessage());
+        }
+    }
 }
