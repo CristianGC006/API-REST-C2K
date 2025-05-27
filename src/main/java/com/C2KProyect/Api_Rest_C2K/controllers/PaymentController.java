@@ -1,8 +1,6 @@
 package com.C2KProyect.Api_Rest_C2K.controllers;
 
 import com.C2KProyect.Api_Rest_C2K.models.Payment;
-import com.C2KProyect.Api_Rest_C2K.models.Rental;
-import com.C2KProyect.Api_Rest_C2K.models.User;
 import com.C2KProyect.Api_Rest_C2K.services.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

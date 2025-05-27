@@ -1,5 +1,6 @@
 package com.C2KProyect.Api_Rest_C2K.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -22,23 +23,26 @@ public class Rental {
     //Foreign key
     @ManyToOne
     @JoinColumn(name = "id_vehicle", referencedColumnName = "vehicle_id")
+    @JsonBackReference(value = "vehicle-rental")
     private Vehicle vehicle;
 
     @ManyToOne
-    @JoinColumn(name = "id_user", referencedColumnName = "id_user")
+    @JoinColumn(name = "id_customer", referencedColumnName = "id")
+    @JsonBackReference(value = "customer-rental")
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "id_user", referencedColumnName = "id_user", insertable = false, updatable = false)
+    @JoinColumn(name = "id_assessor", referencedColumnName = "id")
+    @JsonBackReference(value = "rental-assessor")
     private Assessor assessor;
 
     @OneToMany(mappedBy = "rental")
-    //@JsonBackReference
+    @JsonManagedReference(value = "rental-inspection")
     private List<Inspection> inspections;
 
     @ManyToOne
     @JoinColumn(name = "id_branch", referencedColumnName = "id_branch")
-    @JsonManagedReference(value = "branch")
+    @JsonBackReference(value = "rental-branch")
     private Branch branch;
 
     @OneToOne(mappedBy = "rental")
@@ -46,8 +50,8 @@ public class Rental {
     private Payment payment;
 
     @ManyToOne
-    @JoinColumn(name = "id_admin", referencedColumnName = "id_user")
-    @JsonManagedReference(value = "admin-rental")
+    @JoinColumn(name = "id_admin", referencedColumnName = "id")
+    @JsonBackReference(value = "admin-rental")
     private Admin admin;
 
 

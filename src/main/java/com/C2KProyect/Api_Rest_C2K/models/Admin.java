@@ -1,26 +1,42 @@
 package com.C2KProyect.Api_Rest_C2K.models;
 
-import com.C2KProyect.Api_Rest_C2K.helpers.enums.UserEnum;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.List;
 
 
 @Entity
 @Table(name="admin")
-public class Admin extends User {
+public class Admin{
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idAdmin;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "phone")
+    private String phone;
+    @Column(name = "password")
+    private String password;
+    @Column(name = "adminCode")
+    private String adminCode;
+
     public Admin() {
     }
-    public Admin(Integer idUser, String name, String email, String password, UserEnum userType, String phone, String address, List<Branch> branches, List<Assessor> assessors, List<Rental> rentals, List<Vehicle> vehicles) {
-        super(idUser, name, email, password, userType, phone, address);
-        this.branches = branches;
-        this.assessors = assessors;
-        this.rentals = rentals;
-        this.vehicles = vehicles;
+
+    public Admin( String adminCode, String password, String email,String phone, String name, Integer idAdmin) {
+        this.adminCode = adminCode;
+        this.password = password;
+        this.email = email;
+        this.phone= phone;
+        this.name = name;
+        this.idAdmin = idAdmin;
     }
+
+
 
     //Foreign key
 
@@ -40,39 +56,56 @@ public class Admin extends User {
     @JsonManagedReference(value = "admin-vehicle")
     private List<Vehicle> vehicles;
 
+    @OneToMany(mappedBy = "admin")
+    @JsonManagedReference(value = "admin-customer")
+    private List<Customer> customers;
+
     // Getters y Setters
-
-    public List<Branch> getBranches() {
-        return branches;
+    public Integer getIdAdmin() {
+        return idAdmin;
     }
 
-    public void setBranches(List<Branch> branches) {
-        this.branches = branches;
+    public void setIdAdmin(Integer idAdmin) {
+        this.idAdmin = idAdmin;
     }
 
-    public List<Assessor> getAssessors() {
-        return assessors;
+    public String getName() {
+        return name;
     }
 
-    public void setAssessors(List<Assessor> assessors) {
-        this.assessors = assessors;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public List<Rental> getRentals() {
-        return rentals;
+    public String getEmail() {
+        return email;
     }
 
-    public void setRentals(List<Rental> rentals) {
-        this.rentals = rentals;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public List<Vehicle> getVehicles() {
-        return vehicles;
+    public String getPassword() {
+        return password;
     }
 
-    public void setVehicles(List<Vehicle> vehicles) {
-        this.vehicles = vehicles;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
+    public String getAdminCode() {
+        return adminCode;
+    }
 
+    public void setAdminCode(String adminCode) {
+        this.adminCode = adminCode;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 }

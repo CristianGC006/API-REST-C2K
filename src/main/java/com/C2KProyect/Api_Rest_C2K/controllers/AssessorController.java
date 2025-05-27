@@ -1,8 +1,6 @@
 package com.C2KProyect.Api_Rest_C2K.controllers;
 
-import com.C2KProyect.Api_Rest_C2K.models.Admin;
 import com.C2KProyect.Api_Rest_C2K.models.Assessor;
-import com.C2KProyect.Api_Rest_C2K.models.User;
 import com.C2KProyect.Api_Rest_C2K.services.AssessorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,7 +46,7 @@ public class AssessorController {
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody Assessor requestData) {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(this.assessorService.updateById(id, requestData));
+            return ResponseEntity.status(HttpStatus.OK).body(this.assessorService.updateById(id,requestData));
         } catch (Exception error) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error.getMessage());
         }

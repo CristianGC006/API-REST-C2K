@@ -16,6 +16,7 @@ public class LogisticOperatorServ {
     @Autowired
     ILogisticOperatorRepository repository;
     // -Methods-
+
     //Save
     public LogisticOperator createLogisticOperator(LogisticOperator logisticOperatorData) throws Exception {
         try{
@@ -49,6 +50,8 @@ public class LogisticOperatorServ {
             LogisticOperator logisticOperatorSearched = this.findByID(id);
             if (logisticOperatorSearched != null) {
                 logisticOperatorSearched.setName(logisticOperatorData.getName());
+                logisticOperatorSearched.setAddress(logisticOperatorData.getAddress());
+                logisticOperatorSearched.setPhone(logisticOperatorData.getPhone());
                 logisticOperatorSearched.setEmail(logisticOperatorData.getEmail());
                 return this.repository.save(logisticOperatorSearched);
             } else {

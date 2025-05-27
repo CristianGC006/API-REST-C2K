@@ -1,6 +1,7 @@
 package com.C2KProyect.Api_Rest_C2K.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -24,28 +25,30 @@ public class Vehicle {
     private Integer year;
     @Column(name = "type")
     private String type;
+    @Column(name = "image_url")
+    private String imageUrl;
 
     //Foreign key
     @OneToMany(mappedBy = "vehicle")
-    @JsonBackReference(value = "vehicle")
+    @JsonManagedReference(value = "vehicle-rental")
     private List<Rental>rentals;
 
     @ManyToOne
-    @JoinColumn(name="id_user", referencedColumnName = "id_user")
-    @JsonBackReference(value = "customer")
+    @JoinColumn(name="id_user", referencedColumnName = "id")
+    @JsonBackReference(value = "customer-vehicle")
     private Customer customers;
 
     @ManyToOne
     @JoinColumn(name="id_branch", referencedColumnName = "id_branch")
-    @JsonBackReference(value = "branch")
+    @JsonBackReference(value = "vehicle-branch")
     private Branch branches;
 
     @OneToMany(mappedBy = "vehicle")
-    @JsonBackReference(value = "vehicle")
+    @JsonManagedReference(value = "vehicle-inspection")
     private List<Inspection>inspections;
 
     @ManyToOne
-    @JoinColumn(name = "id_admin", referencedColumnName = "id_user")
+    @JoinColumn(name = "id_admin", referencedColumnName = "id")
     @JsonBackReference(value = "admin-vehicle")
     private Admin admin;
 
@@ -56,7 +59,7 @@ public class Vehicle {
     public Vehicle() {
     }
 
-    public Vehicle(Integer vehicleId, String brand, String model, String color, String plate, Integer year, String type) {
+    public Vehicle(Integer vehicleId, String brand, String model, String color, String plate, Integer year, String type, String imageUrl) {
         this.vehicleId = vehicleId;
         this.brand = brand;
         this.model = model;
@@ -64,9 +67,14 @@ public class Vehicle {
         this.plate = plate;
         this.year = year;
         this.type = type;
-
+        this.imageUrl = imageUrl;
     }
-
+    public String getImageUrl() {
+        return imageUrl;
+    }
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
     public Integer getVehicleId() {
         return vehicleId;
     }

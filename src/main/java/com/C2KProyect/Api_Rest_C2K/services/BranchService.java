@@ -1,9 +1,7 @@
 package com.C2KProyect.Api_Rest_C2K.services;
 
 import com.C2KProyect.Api_Rest_C2K.models.Branch;
-import com.C2KProyect.Api_Rest_C2K.models.User;
 import com.C2KProyect.Api_Rest_C2K.repositories.IBranchRepository;
-import com.C2KProyect.Api_Rest_C2K.repositories.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

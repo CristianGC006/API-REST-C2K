@@ -1,9 +1,7 @@
 package com.C2KProyect.Api_Rest_C2K.controllers;
 
 import com.C2KProyect.Api_Rest_C2K.models.Customer;
-import com.C2KProyect.Api_Rest_C2K.models.User;
 import com.C2KProyect.Api_Rest_C2K.services.CustomerService;
-import com.C2KProyect.Api_Rest_C2K.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

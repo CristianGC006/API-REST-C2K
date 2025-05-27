@@ -1,9 +1,7 @@
 package com.C2KProyect.Api_Rest_C2K.services;
 
-import com.C2KProyect.Api_Rest_C2K.models.Assessor;
 import com.C2KProyect.Api_Rest_C2K.models.Customer;
 import com.C2KProyect.Api_Rest_C2K.repositories.ICustomerRepository;
-import com.C2KProyect.Api_Rest_C2K.repositories.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +40,7 @@ public class CustomerService {
         try{
             Optional<Customer> customerSearched=this.repository.findById(id);
             if (customerSearched.isPresent()){
-                return(Customer) customerSearched.get();
+                return customerSearched.get();
             }else{
                 throw new Exception("El cliente no se encuentra en la base de datos");
             }
@@ -58,17 +56,11 @@ public class CustomerService {
             Optional<Customer> customerSearched = this.repository.findById(id);
             if (customerSearched.isPresent()) {
                 Customer existingCustomer = customerSearched.get();
-
-                // Actualizar campos heredados de User
                 existingCustomer.setName(customerData.getName());
                 existingCustomer.setEmail(customerData.getEmail());
                 existingCustomer.setPassword(customerData.getPassword());
-                existingCustomer.setUserType(customerData.getUserType());
                 existingCustomer.setPhone(customerData.getPhone());
-                existingCustomer.setAddress(customerData.getAddress());
 
-
-                // Guardar cambios
                 return this.repository.save(existingCustomer);
             } else {
                 throw new Exception("El cliente no se encuentra en la base de datos");

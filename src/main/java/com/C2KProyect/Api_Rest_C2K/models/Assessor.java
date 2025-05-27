@@ -1,63 +1,103 @@
 package com.C2KProyect.Api_Rest_C2K.models;
 
-import com.C2KProyect.Api_Rest_C2K.helpers.enums.UserEnum;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import org.apache.catalina.LifecycleState;
 
 import java.util.List;
 
 @Entity
 @Table(name = "assessor")
-public class Assessor extends User {
+public class Assessor{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer idAssessor;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "email")
+    protected String email;
+    @Column(name = "password")
+    protected String password;
+    @Column(name = "phone")
+    protected String phone;
+    @Column(name = "address")
+    private String address;
 
     public Assessor() {
     }
 
-    public Assessor(Integer idUser, String name, String email, String password, UserEnum userType, String phone, String address, Branch branch, List<Rental> rentals) {
-        super(idUser, name, email, password, userType, phone, address);
-        this.branch = branch;
-        this.rentals = rentals;
+    public Assessor(Integer idAssessor, String name, String email, String password, String phone, String address) {
+        this.idAssessor = idAssessor;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.address = address;
     }
 
-
-    public Branch getBranch() {
-        return branch;
+    public Integer getIdAssessor() {
+        return idAssessor;
     }
 
-    public void setBranch(Branch branch) {
-        this.branch = branch;
+    public void setIdAssessor(Integer idAssessor) {
+        this.idAssessor = idAssessor;
     }
 
-    public List<Rental> getRentals() {
-        return rentals;
+    public String getName() {
+        return name;
     }
 
-    public void setRentals(List<Rental> rentals) {
-        this.rentals = rentals;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Admin getAdmin() {
-        return admin;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     //Foreign key
     @ManyToOne
     @JoinColumn(name = "id_branch", referencedColumnName = "id_branch")
-    @JsonManagedReference(value = "branch")
+    @JsonBackReference(value = "assessor-branch")
     private Branch branch;
 
     @OneToMany(mappedBy = "assessor")
-    //@JsonBackReference
+    @JsonManagedReference(value = "rental-assessor")
     private List<Rental>rentals;
 
     @ManyToOne
-    @JoinColumn(name = "id_admin", referencedColumnName = "id_user")
-    @JsonManagedReference(value = "admin-assessor")
+    @JoinColumn(name = "id_admin", referencedColumnName = "id")
+    @JsonBackReference(value = "admin-assessor")
     private Admin admin;
 
 

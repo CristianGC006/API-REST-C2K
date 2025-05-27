@@ -1,6 +1,7 @@
 package com.C2KProyect.Api_Rest_C2K.models;
 
 import com.C2KProyect.Api_Rest_C2K.helpers.enums.InspectionEnum;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.*;
@@ -14,27 +15,27 @@ public class Inspection {
     private Integer id;
     @Column(name = "type")
     private InspectionEnum type;
-    //Aca va la foto
+
 
     //Foreign key
     @ManyToOne
     @JoinColumn(name = "id_branch", referencedColumnName = "id_branch")
-    @JsonManagedReference(value = "branch")
+    @JsonBackReference(value = "inspection-branch")
     private Branch branch;
 
     @ManyToOne
     @JoinColumn(name = "id_rental", referencedColumnName = "id_rental")
-    @JsonManagedReference(value = "rental")
+    @JsonBackReference(value = "rental-inspection")
     private Rental rental;
 
     @ManyToOne
     @JoinColumn(name = "id_vehicle", referencedColumnName = "vehicle_id")
-    @JsonManagedReference(value = "vehicle")
+    @JsonBackReference(value = "vehicle-inspection")
     private Vehicle vehicle;
 
     @ManyToOne
-    @JoinColumn(name="logistic_operator", referencedColumnName= "id_user")
-    @JsonManagedReference(value = "logistic_operator")
+    @JoinColumn(name="logistic_operator", referencedColumnName= "id")
+    @JsonBackReference(value = "logistic_operator")
     private LogisticOperator logistic_operator;
 
 

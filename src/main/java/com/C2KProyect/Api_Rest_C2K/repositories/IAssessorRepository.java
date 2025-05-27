@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface IAssessorRepository extends JpaRepository<Assessor, Integer> {
-    Optional<Assessor> findByIdUser(Integer idUser);
+
 }

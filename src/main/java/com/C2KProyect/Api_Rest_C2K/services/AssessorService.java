@@ -1,7 +1,6 @@
 package com.C2KProyect.Api_Rest_C2K.services;
 
 import com.C2KProyect.Api_Rest_C2K.models.Assessor;
-import com.C2KProyect.Api_Rest_C2K.models.User;
 import com.C2KProyect.Api_Rest_C2K.repositories.IAssessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +11,6 @@ import java.util.Optional;
 @Service
 public class AssessorService {
 
-    //Save-->
     //Implements Repositories
     @Autowired
     IAssessorRepository repository;
@@ -42,7 +40,7 @@ public class AssessorService {
         try{
             Optional<Assessor> assessorSearched=this.repository.findById(id);
             if (assessorSearched.isPresent()){
-                return(Assessor) assessorSearched.get();
+                return assessorSearched.get();
             }else{
                 throw new Exception("El asesor no se encuentra en la base de datos");
             }
@@ -53,11 +51,12 @@ public class AssessorService {
     }
 
     //Update by Id -->
-    public Assessor updateById(Integer id, User assessorData)throws Exception{
+    public Assessor updateById(Integer id, Assessor assessorData)throws Exception{
         try {
             Optional<Assessor> assessorSearched =this.repository.findById(id);
             if (assessorSearched.isPresent()){
                 assessorSearched.get().setName(assessorData.getName());
+                assessorSearched.get().setAddress(assessorData.getAddress());
                 assessorSearched.get().setEmail(assessorData.getEmail());
                 assessorSearched.get().setPassword(assessorData.getPassword());
 

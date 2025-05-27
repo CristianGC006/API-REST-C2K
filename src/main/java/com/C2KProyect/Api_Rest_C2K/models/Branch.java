@@ -26,19 +26,20 @@ public class Branch {
 
     //Foreign key
     @OneToMany(mappedBy = "branch")
-   @JsonManagedReference(value = "branch")
+    @JsonManagedReference(value = "assessor-branch")
     private List<Assessor> assessors;
 
+
     @OneToMany(mappedBy = "branch")
-    @JsonBackReference(value = "branch")
+    @JsonManagedReference(value = "inspection-branch")
     private List<Inspection>inspections;
 
     @OneToMany(mappedBy = "branch")
-    @JsonManagedReference(value = "branch")
+    @JsonManagedReference(value = "rental-branch")
     private List<Rental> rentals;
 
     @ManyToOne
-    @JoinColumn(name = "id_admin", referencedColumnName = "id_user")
+    @JoinColumn(name = "id_admin", referencedColumnName = "id")
     @JsonBackReference(value = "admin-branch")
     private Admin admin;
 

@@ -53,7 +53,6 @@ public class AdminService {
             if (adminSearched.isPresent()) {
                 adminSearched.get().setName(adminData.getName());
                 adminSearched.get().setEmail(adminData.getEmail());
-                adminSearched.get().setAddress(adminData.getAddress());
                 adminSearched.get().setPhone(adminData.getPhone());
                 adminSearched.get().setPassword(adminData.getPassword());
                 return this.repository.save(adminSearched.get());
