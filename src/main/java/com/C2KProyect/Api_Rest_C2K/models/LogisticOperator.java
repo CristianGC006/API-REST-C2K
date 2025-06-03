@@ -13,7 +13,6 @@ public class LogisticOperator {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer idLogisticOperator;
-
     @Column(name = "name")
     private String name;
     @Column(name = "email")

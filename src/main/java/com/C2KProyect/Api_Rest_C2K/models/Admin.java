@@ -1,11 +1,9 @@
 package com.C2KProyect.Api_Rest_C2K.models;
 
+import com.C2KProyect.Api_Rest_C2K.helpers.enums.IdentificationType;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-
 import java.util.List;
-
-
 @Entity
 @Table(name="admin")
 public class Admin{
@@ -15,6 +13,10 @@ public class Admin{
     private Integer idAdmin;
     @Column(name = "name")
     private String name;
+    @Column(name = "documentType")
+    private IdentificationType identificationType;
+    @Column(name = "documentNumber")
+    private String documentNumber;
     @Column(name = "email")
     private String email;
     @Column(name = "phone")

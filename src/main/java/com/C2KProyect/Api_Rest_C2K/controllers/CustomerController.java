@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
@@ -59,7 +59,6 @@ public class CustomerController {
         }
     }
 
-    //Delete-->
     @DeleteMapping("/{id}")
     public ResponseEntity<?>delete(@PathVariable Integer id){
         try{
@@ -69,5 +68,6 @@ public class CustomerController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error.getMessage());
         }
     }
+    //Delete-->
 
 }

@@ -1,5 +1,6 @@
 package com.C2KProyect.Api_Rest_C2K.models;
 
+import com.C2KProyect.Api_Rest_C2K.helpers.enums.GenderType;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
@@ -16,10 +17,22 @@ public class Customer {
     private Integer idCustomer;
     @Column(name = "name")
     private String name;
+    @Column(name = "lastName")
+    private String  lastName;
+    @Column(name="identificationType")
+    private String identificationType;
+    @Column(name = "identificationNumber")
+    private String identificationNumber;
+    @Column(name = "genderType")
+    private GenderType genderType;
+    @Column(name="nationality")
+    private String nationality;
     @Column(name = "email")
     private String email;
     @Column(name = "phone")
     private String phone;
+    @Column(name = "license")
+    private String license;
     @Column(name = "password")
     private String password;
     @Column(name = "record_date")
@@ -44,17 +57,70 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(Integer idCustomer, String name, String email, String phone, String password, Date recordDate) {
+    public Customer(Integer idCustomer, String name, String lastName, String identificationType, String identificationNumber, GenderType genderType, String nationality, String email, String phone, String license, String password, Date recordDate) {
         this.idCustomer = idCustomer;
         this.name = name;
+        this.lastName = lastName;
+        this.identificationType = identificationType;
+        this.identificationNumber = identificationNumber;
+        this.genderType = genderType;
+        this.nationality = nationality;
         this.email = email;
         this.phone = phone;
+        this.license = license;
         this.password = password;
         this.recordDate = recordDate;
     }
 
+    public GenderType getGenderType() {
+        return genderType;
+    }
+
+    public void setGenderType(GenderType genderType) {
+        this.genderType = genderType;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getIdentificationType() {
+        return identificationType;
+    }
+
+    public void setIdentificationType(String identificationType) {
+        this.identificationType = identificationType;
+    }
+
+    public String getIdentificationNumber() {
+        return identificationNumber;
+    }
+
+    public void setIdentificationNumber(String identificationNumber) {
+        this.identificationNumber = identificationNumber;
+    }
+
     public String getPhone() {
         return phone;
+    }
+
+    public void setLicense(String license) {
+        this.license = license;
+    }
+    public String getLicense() {
+        return license;
     }
 
     public void setPhone(String phone) {
