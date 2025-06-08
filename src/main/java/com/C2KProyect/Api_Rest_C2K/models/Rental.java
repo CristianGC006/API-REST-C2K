@@ -19,6 +19,12 @@ public class Rental {
     private String description;
     @Column(name = "price")
     private Double price;
+    @Column(name = "start_date")
+    private String startDate;
+    @Column(name = "end_date")
+    private String endDate;
+    @Column(name = "status")
+    private String status;
 
     //Foreign key
     @ManyToOne
@@ -54,15 +60,41 @@ public class Rental {
     @JsonBackReference(value = "admin-rental")
     private Admin admin;
 
-
-
     public Rental() {
     }
-    public Rental(Integer idRental, String name, String description, Double price) {
+
+    public Rental(Integer idRental, String name, String description, Double price, String startDate, String endDate, String status) {
         this.idRental = idRental;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.status = status;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Integer getIdRental() {
@@ -96,4 +128,29 @@ public class Rental {
     public void setPrice(Double price) {
         this.price = price;
     }
-}
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Assessor getAssessor() {
+        return assessor;
+    }
+
+    public void setAssessor(Assessor assessor) {
+        this.assessor = assessor;
+    }
+
+    }

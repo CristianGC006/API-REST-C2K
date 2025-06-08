@@ -57,9 +57,17 @@ public class CustomerService {
             if (customerSearched.isPresent()) {
                 Customer existingCustomer = customerSearched.get();
                 existingCustomer.setName(customerData.getName());
+                existingCustomer.setLastName(customerData.getLastName());
+                existingCustomer.setGenderType(customerData.getGenderType());
+                existingCustomer.setIdentificationType(customerData.getIdentificationType());
                 existingCustomer.setEmail(customerData.getEmail());
-                existingCustomer.setPassword(customerData.getPassword());
                 existingCustomer.setPhone(customerData.getPhone());
+
+                // ✅ Solo actualizar la contraseña si se proporciona
+                if (customerData.getPassword() != null && !customerData.getPassword().trim().isEmpty()) {
+                    existingCustomer.setPassword(customerData.getPassword());
+                }
+
 
                 return this.repository.save(existingCustomer);
             } else {
