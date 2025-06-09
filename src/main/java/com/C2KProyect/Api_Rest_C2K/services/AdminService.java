@@ -54,7 +54,12 @@ public class AdminService {
                 adminSearched.get().setName(adminData.getName());
                 adminSearched.get().setEmail(adminData.getEmail());
                 adminSearched.get().setPhone(adminData.getPhone());
-                adminSearched.get().setPassword(adminData.getPassword());
+                adminSearched.get().setDocumentNumber(adminData.getDocumentNumber());
+                adminSearched.get().setIdentificationType(adminData.getIdentificationType());
+                adminSearched.get().setAdminCode(adminData.getAdminCode());
+                if (adminData.getPassword()!=null && !adminData.getPassword().trim().isEmpty()){
+                    adminSearched.get().setPassword(adminData.getPassword());
+                }
                 return this.repository.save(adminSearched.get());
             } else {
                 throw new Exception("El Administrador no se encuentra en la base de datos");

@@ -53,6 +53,11 @@ public class LogisticOperatorServ {
                 logisticOperatorSearched.setAddress(logisticOperatorData.getAddress());
                 logisticOperatorSearched.setPhone(logisticOperatorData.getPhone());
                 logisticOperatorSearched.setEmail(logisticOperatorData.getEmail());
+                logisticOperatorSearched.setServiceArea(logisticOperatorData.getServiceArea());
+                logisticOperatorSearched.setLogisticOperatorCode(logisticOperatorData.getLogisticOperatorCode());
+                if (logisticOperatorData.getPassword() != null && !logisticOperatorData.getPassword().trim().isEmpty()) {
+                    logisticOperatorSearched.setPassword(logisticOperatorData.getPassword());
+                }
                 return this.repository.save(logisticOperatorSearched);
             } else {
                 throw new Exception("El operador logístico no se encuentra en la base de datos");

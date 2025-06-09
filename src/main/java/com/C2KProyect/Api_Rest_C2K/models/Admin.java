@@ -62,6 +62,23 @@ public class Admin{
     @JsonManagedReference(value = "admin-customer")
     private List<Customer> customers;
 
+
+    public IdentificationType getIdentificationType() {
+        return identificationType;
+    }
+
+    public void setIdentificationType(IdentificationType identificationType) {
+        this.identificationType = identificationType;
+    }
+
+    public String getDocumentNumber() {
+        return documentNumber;
+    }
+
+    public void setDocumentNumber(String documentNumber) {
+        this.documentNumber = documentNumber;
+    }
+
     // Getters y Setters
     public Integer getIdAdmin() {
         return idAdmin;

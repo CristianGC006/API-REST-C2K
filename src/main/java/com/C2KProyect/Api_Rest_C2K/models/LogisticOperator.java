@@ -17,6 +17,8 @@ public class LogisticOperator {
     private String name;
     @Column(name = "email")
     private String email;
+    @Column(name = "logistic_operator_code")
+    private String logisticOperatorCode;
     @Column(name = "password")
     private String password;
     @Column(name = "phone")
@@ -30,11 +32,12 @@ public class LogisticOperator {
 
     }
 
-    public LogisticOperator(Integer idLogisticOperator, String name, String email, String password, String phone, String address, ServicesEnumLogOperator serviceArea) {
+    public LogisticOperator(Integer idLogisticOperator, String name,String logisticOperatorCode, String email, String password, String phone, String address, ServicesEnumLogOperator serviceArea) {
         this.idLogisticOperator = idLogisticOperator;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.logisticOperatorCode = logisticOperatorCode;
         this.phone = phone;
         this.address = address;
         this.serviceArea = serviceArea;
@@ -74,6 +77,14 @@ public class LogisticOperator {
 
     public String getPhone() {
         return phone;
+    }
+
+    public String getLogisticOperatorCode() {
+        return logisticOperatorCode;
+    }
+
+    public void setLogisticOperatorCode(String logisticOperatorCode) {
+        this.logisticOperatorCode = logisticOperatorCode;
     }
 
     public void setPhone(String phone) {

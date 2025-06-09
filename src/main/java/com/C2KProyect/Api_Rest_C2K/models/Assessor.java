@@ -20,6 +20,8 @@ public class Assessor{
     protected String email;
     @Column(name = "password")
     protected String password;
+    @Column(name="assessorCode")
+    private String assessorCode;
     @Column(name = "phone")
     protected String phone;
     @Column(name = "address")
@@ -28,11 +30,12 @@ public class Assessor{
     public Assessor() {
     }
 
-    public Assessor(Integer idAssessor, String name, String email, String password, String phone, String address) {
+    public Assessor(Integer idAssessor, String name, String email,String assessorCode, String password, String phone, String address) {
         this.idAssessor = idAssessor;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.assessorCode = assessorCode;
         this.phone = phone;
         this.address = address;
     }
@@ -83,6 +86,38 @@ public class Assessor{
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Branch getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branch branch) {
+        this.branch = branch;
+    }
+
+    public List<Rental> getRentals() {
+        return rentals;
+    }
+
+    public void setRentals(List<Rental> rentals) {
+        this.rentals = rentals;
+    }
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
+
+    public String getAssessorCode() {
+        return assessorCode;
+    }
+
+    public void setAssessorCode(String assessorCode) {
+        this.assessorCode = assessorCode;
     }
 
     //Foreign key

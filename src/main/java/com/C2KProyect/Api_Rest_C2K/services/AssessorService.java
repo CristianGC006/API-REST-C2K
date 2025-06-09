@@ -58,8 +58,13 @@ public class AssessorService {
                 assessorSearched.get().setName(assessorData.getName());
                 assessorSearched.get().setAddress(assessorData.getAddress());
                 assessorSearched.get().setEmail(assessorData.getEmail());
-                assessorSearched.get().setPassword(assessorData.getPassword());
-
+                assessorSearched.get().setPhone(assessorData.getPhone());
+                assessorSearched.get().setAdmin(assessorData.getAdmin());
+                assessorSearched.get().setBranch(assessorData.getBranch());
+                assessorSearched.get().setAssessorCode(assessorData.getAssessorCode());
+                if (assessorData.getPassword()!=null && !assessorData.getPassword().trim().isEmpty()){
+                    assessorSearched.get().setPassword(assessorData.getPassword());
+                }
             }else{
                 throw new Exception("El usuario que quieres modificar no se encuentra en la base de datos");
             }
